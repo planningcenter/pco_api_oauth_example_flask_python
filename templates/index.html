@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="people-list">
+  {% for person in people %}
+    <div class="person">
+      <div class="person-avatar">
+        <img src="{{person.attributes.avatar}}" alt="{{person.attributes.name}}">
+      </div>
+      <div class="person-name">{{person.attributes.name}}</div>
+    </div>
+  {% endfor %}
+</div>
+
+<h2>People Raw Data</h2>
+<pre>{{formatted_response}}</pre>
+{% endblock %}

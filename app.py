@@ -1,5 +1,5 @@
 from requests_oauthlib import OAuth2Session
-from flask import Flask, request, redirect, session, url_for
+from flask import Flask, request, redirect, render_template, session, url_for
 import json
 import os
 import pprint
@@ -29,11 +29,11 @@ pco = OAuth2Session(client_id,
 @app.route("/")
 def index():
     if "oauth_token" in session:
-        people = pco.get(f"{api_url}/people/v2/people").json()
-        people_formatted = pprint.PrettyPrinter(indent=2).pformat(people)
-        return f"<a href='/auth/logout'>log out</a><br><pre>{people_formatted}</pre>"
+        response = pco.get(f"{api_url}/people/v2/people").json()
+        formatted_response = pprint.PrettyPrinter(indent=2).pformat(response)
+        return render_template("index.html", logged_in=True, people=response['data'], formatted_response=formatted_response)
     else:
-        return f"<a href='/auth'>authenticate with API</a>"
+        return render_template("login.html")
 
 @app.route("/auth")
 def auth():

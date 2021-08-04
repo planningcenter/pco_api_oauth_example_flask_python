@@ -1,0 +1,93 @@
+body {
+  font-family: sans-serif;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited {
+  text-decoration: none;
+  color: #08c;
+}
+
+pre {
+  height: 600px;
+  overflow: scroll;
+  padding: 1rem;
+  font-family: monospace;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav li a {
+  font-size: 1.5rem;
+}
+
+.login {
+  width: 400px;
+  margin: 5rem auto 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.login p {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.login a {
+  display: block;
+  width: 50%;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #08c;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.people-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.person {
+  display: block;
+  width: 360px;
+  margin-bottom: 1rem;
+}
+
+.person-avatar {
+  height: 240px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.person-avatar img {
+  display: block;
+  width: 100%;
+}
+
+.person-name {
+  padding: .5rem 0;
+  font-size: 1.5rem;
+}

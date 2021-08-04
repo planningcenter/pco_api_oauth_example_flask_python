@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PCO API OAuth Example Slim PHP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Hello PCO API!</h1>
+        {% if logged_in %}
+          <ul class="nav">
+            <li><a href='/auth/logout'>Logout</a></li>
+          </ul>
+        {% endif %}
+      </header>
+      <div id="content">{% block content %}{% endblock %}</div>
+    </div>
+  </body>
+</html>

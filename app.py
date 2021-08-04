@@ -31,7 +31,7 @@ def index():
     if "oauth_token" in session:
         people = pco.get(f"{api_url}/people/v2/people").json()
         people_formatted = pprint.PrettyPrinter(indent=2).pformat(people)
-        return f"<a href='/auth/logout'>log out</a><br><pre>%s</pre>" % people_formatted
+        return f"<a href='/auth/logout'>log out</a><br><pre>{people_formatted}</pre>"
     else:
         return f"<a href='/auth'>authenticate with API</a>"
 

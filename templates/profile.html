@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="profile">
+  <h2>User Profile</h2>
+
+  {% if userinfo_claims %}
+    <div class="claims-section">
+      <h3>User Information (from /oauth/userinfo)</h3>
+      <table class="claims-table">
+        {% for key, value in userinfo_claims.items() %}
+        <tr>
+          <td class="claim-name">{{ key }}</td>
+          <td class="claim-value">{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+
+  {% if id_token_claims %}
+    <div class="claims-section">
+      <h3>ID Token Claims</h3>
+      <table class="claims-table">
+        {% for key, value in id_token_claims.items() %}
+        <tr>
+          <td class="claim-name">{{ key }}</td>
+          <td class="claim-value">{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+
+  {% if not userinfo and not id_token_claims %}
+    <p>No user claims available. Make sure that the 'openid email profile' scopes are requested.</p>
+  {% endif %}
+</div>
+{% endblock %}

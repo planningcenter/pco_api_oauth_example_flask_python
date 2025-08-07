@@ -85,6 +85,17 @@ def people():
     response = pco.get(f"{api_url}/people/v2/people").json()
     formatted_response = pprint.PrettyPrinter(indent=2).pformat(response)
     return render_template("people.html", logged_in=True, people=response['data'], formatted_response=formatted_response)
+
+@app.route("/profile")
+def profile():
+    if "oauth_token" not in session:
+        return redirect("/")
+
+    return render_template("profile.html",
+                         logged_in=True,
+                         userinfo_claims=fetch_user_info(),
+                         id_token_claims=session.get("current_user", {}).get("claims", {}))
+
 @app.route("/auth/logout")
 def logout():
     pco.post(f"{api_url}/oauth/revoke", data={"token": session["oauth_token"]})

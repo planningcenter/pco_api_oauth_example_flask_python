@@ -77,9 +77,11 @@ header {
 }
 
 .person-avatar {
-  height: 240px;
-  overflow: hidden;
-  margin-bottom: 10px;
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .person-avatar img {
@@ -90,4 +92,35 @@ header {
 .person-name {
   padding: .5rem 0;
   font-size: 1.5rem;
+}
+
+.claims-section {
+  margin: 2rem 0;
+}
+
+.claims-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.claims-table td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.claim-name {
+  font-weight: bold;
+  background-color: #f5f5f5;
+  width: 30%;
+}
+
+.claim-value {
+  word-break: break-all;
+}
+
+.nav li {
+  display: inline-block;
+  margin-left: 1rem;
 }

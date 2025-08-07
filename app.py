@@ -29,9 +29,7 @@ pco = OAuth2Session(client_id,
 @app.route("/")
 def index():
     if "oauth_token" in session:
-        response = pco.get(f"{api_url}/people/v2/people").json()
-        formatted_response = pprint.PrettyPrinter(indent=2).pformat(response)
-        return render_template("index.html", logged_in=True, people=response['data'], formatted_response=formatted_response)
+        return redirect("/people")
     else:
         return render_template("login.html")
 
@@ -49,6 +47,14 @@ def callback():
     session["oauth_token"] = token
     return redirect("/")
 
+@app.route("/people")
+def people():
+    if "oauth_token" not in session:
+        return redirect("/")
+
+    response = pco.get(f"{api_url}/people/v2/people").json()
+    formatted_response = pprint.PrettyPrinter(indent=2).pformat(response)
+    return render_template("people.html", logged_in=True, people=response['data'], formatted_response=formatted_response)
 @app.route("/auth/logout")
 def logout():
     pco.post(f"{api_url}/oauth/revoke", data={"token": session["oauth_token"]})

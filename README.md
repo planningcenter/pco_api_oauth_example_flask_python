@@ -1,4 +1,4 @@
-# PCO API OAuth Example - Flask + Python
+# PCO API OAuth/OIDC Example - Flask + Python
 
 This is an example Flask app for demonstrating how one might build an app to authenticate any PCO user
 and then subsequently use that authentication to query the API.

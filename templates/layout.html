@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PCO API OAuth Example Slim PHP</title>
+    <title>PCO API OAuth/OIDC Example Slim PHP</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
   </head>
   <body>
     <div class="wrap">
       <header>
-        <h1>Hello PCO API!</h1>
+        <h1>Hello {{ session.get("current_user", {}).get("name", "Guest") }}</h1>
         {% if logged_in %}
           <ul class="nav">
             <li><a href='/people'>People</a></li>

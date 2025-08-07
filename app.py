@@ -10,7 +10,7 @@ app.secret_key = os.urandom(24)
 client_id = os.environ["OAUTH_APP_ID"]
 client_secret = os.environ["OAUTH_SECRET"]
 domain = os.environ.get("DOMAIN", "http://localhost:5000")
-api_url = "https://api.planningcenteronline.com"
+api_url = os.environ.get("API_URL", "https://api.planningcenteronline.com")
 token_url = f"{api_url}/oauth/token"
 
 def token_updater(token):

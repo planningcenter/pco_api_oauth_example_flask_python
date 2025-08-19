@@ -18,7 +18,7 @@ def token_updater(token):
     session["oauth_token"] = token
 
 pco = OAuth2Session(client_id,
-        scope="openid email profile people services",
+        scope="openid people services",
         redirect_uri=f"{domain}/auth/complete",
         auto_refresh_kwargs={
             "client_id": client_id,

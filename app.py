@@ -1,9 +1,11 @@
 from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, render_template, session, url_for
+import base64
+import hashlib
 import json
+import jwt
 import os
 import pprint
-import jwt
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -51,6 +53,13 @@ def parse_id_token(id_token):
         print(f"Failed to decode ID token: {e}")
         return None
 
+def gen_code_verifier():
+    return base64.urlsafe_b64encode(os.urandom(64)).decode().rstrip("=")
+
+def gen_code_challenge(verifier):
+    digest = hashlib.sha256(verifier.encode()).digest()
+    return base64.urlsafe_b64encode(digest).decode().rstrip("=")
+
 @app.route("/")
 def index():
     if "oauth_token" in session:
@@ -60,14 +69,21 @@ def index():
 
 @app.route("/auth")
 def auth():
-    authorization_url, state = pco.authorization_url(f"{api_url}/oauth/authorize", prompt="select_account")
+    code_verifier = gen_code_verifier()
+    code_challenge = gen_code_challenge(code_verifier)
+
+    authorization_url, state = pco.authorization_url(f"{api_url}/oauth/authorize", prompt="select_account", code_challenge=code_challenge, code_challenge_method='S256')
+
+    session['code_verifier'] = code_verifier
     session['oauth_state'] = state
+
     return redirect(authorization_url)
 
 @app.route("/auth/complete", methods=["GET"])
 def callback():
     token = pco.fetch_token(token_url, client_secret=client_secret,
-                            authorization_response=request.url)
+                            authorization_response=request.url,
+                            code_verifier=session.pop('code_verifier', ''))
     session["oauth_token"] = token
 
     if 'id_token' in token:

@@ -1,11 +1,16 @@
-# PCO API OAuth / OIDC / PKCE Example - Flask + Python
+# ARCHIVED
+
+This repository is no longer maintained and has been archived for historical purposes.
+For more information on using our APIs and other current developer resources, check out the developer page on our site: https://developer.planning.center/
+
+## PCO API OAuth / OIDC / PKCE Example - Flask + Python
 
 This is an example Flask app for demonstrating how one might build an app to authenticate any PCO user
 and then subsequently use that authentication to query the API.
 
 You can learn more about Planning Center's API [here](https://developer.planning.center/docs).
 
-## Setup
+### Setup
 
 1. Create an app at [api.planningcenteronline.com](https://api.planningcenteronline.com/oauth/applications).
 
@@ -31,6 +36,6 @@ You can learn more about Planning Center's API [here](https://developer.planning
 
 4. Visit [localhost:5000](http://localhost:5000).
 
-## Copyright & License
+### Copyright & License
 
 Copyright Ministry Centered Technologies. Licensed MIT.
